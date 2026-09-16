@@ -100,7 +100,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--t);min-he
 .lnm{font-size:14px;font-weight:600;}
 
 .lob{font-size:11px;color:var(--t2);margin-top:2px;}
-.ldesc{display:none;}
+.ldesc{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important;}
 
 .lpa{display:flex;align-items:center;gap:10px;}
 
@@ -1841,7 +1841,7 @@ function renderLineas(){
   Object.entries(P).forEach(([lid,l])=>{
     const p=calcLinea(lid);const card=document.createElement("div");card.className="lc";
     card.innerHTML=`<div class="lch"><div class="line-meta"><div class="line-icon hero-gradient">${lineIcon(lid)}</div><div class="line-code-chip" style="background:transparent;color:#13213A">${l.tg}</div><div class="lin"><div class="lnm">${l.nm}</div><div class="lob">${l.ob}</div>
-          ${l.desc?`<div class="ldesc">${l.desc}</div>`:''}</div></div><div class="lpa"><div class="lbr"><div class="lbf" style="${barStyle(p)}"></div></div><div class="lpc">${p.toFixed(0)}%</div><span class="lpr" style="background:${l.tb};color:${l.tf}">${l.pr}</span></div></div><div class="lcb"><div class="ci"><div class="ct">Indicadores y fórmulas</div>${l.i.map(ind=>{const ip=calcInd(ind);return`<div class="ib"><div class="ih"><span class="ic">${ind.cd}</span><span class="ip ${ip>=100?"pct-ok":"pct-active"}">${ind.tp==="result"?"—":ip.toFixed(0)+"%"}</span></div><div class="in">${ind.nm}</div><div class="if">${ind.fm}</div><div class="im">${ind.mt}</div>${ind.tp!=="result"?`<div class="ipb"><div class="ipf" style="${barStyle(ip)}"></div></div>`:""}${ind.tp==="counter"?`<div class="ixt"><span class="ixl">Capacitados:</span><span class="ixv">${S[ind.id+"_c"]||0}/${ind.mx}</span></div>`:""}</div>`;}).join("")}</div><div class="ca"><div class="ct">Actividades por indicador</div>${l.i.filter(x=>x.tp!=="result").map(ind=>{
+</div></div><div class="lpa"><div class="lbr"><div class="lbf" style="${barStyle(p)}"></div></div><div class="lpc">${p.toFixed(0)}%</div><span class="lpr" style="background:${l.tb};color:${l.tf}">${l.pr}</span></div></div><div class="lcb"><div class="ci"><div class="ct">Indicadores y fórmulas</div>${l.i.map(ind=>{const ip=calcInd(ind);return`<div class="ib"><div class="ih"><span class="ic">${ind.cd}</span><span class="ip ${ip>=100?"pct-ok":"pct-active"}">${ind.tp==="result"?"—":ip.toFixed(0)+"%"}</span></div><div class="in">${ind.nm}</div><div class="if">${ind.fm}</div><div class="im">${ind.mt}</div>${ind.tp!=="result"?`<div class="ipb"><div class="ipf" style="${barStyle(ip)}"></div></div>`:""}${ind.tp==="counter"?`<div class="ixt"><span class="ixl">Capacitados:</span><span class="ixv">${S[ind.id+"_c"]||0}/${ind.mx}</span></div>`:""}</div>`;}).join("")}</div><div class="ca"><div class="ct">Actividades por indicador</div>${l.i.filter(x=>x.tp!=="result").map(ind=>{
 if(ind.id==="I19"){
   const tasks=Object.entries(S).filter(([k])=>k.startsWith("l5t_")).map(([,v])=>v);
   if(!tasks.length)return`<div class="ag"><span class="at" style="background:${l.tb};color:${l.tf}">${ind.cd}</span><div class="ar"><div class="ax" style="color:var(--t3)">Sin tareas — crea una desde el panel admin</div></div></div>`;
